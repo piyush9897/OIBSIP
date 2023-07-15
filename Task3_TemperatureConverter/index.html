@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<head>
+    
+    <link rel="stylesheet" href="Style.css">
+    <title>Temperature converter</title>
+</head>
+
+<body>
+    <div class="container">
+        <form id="calcTemp" onsubmit="calculateTemp(); return false">
+            <label for="temp">Temperature Converter</label>
+            <br>
+            <input type="number" name="temp" id="temp" value="0">
+            <select name="temp_diff" id="temp_diff">
+                <option value="cel">&#176;Celsius</option>
+                <option value="fah">&#176;Fahrenheit</option>
+            </select>
+            <br>
+            <input type="submit" name="temp" id="submit">
+            <br>
+            <span id="result"></span>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<script>
+    const calculateTemp = () => {
+    const inputTemp = document.getElementById('temp').value;
+
+    const tempSelected = document.getElementById('temp_diff');
+    const valueTemp = temp_diff.options[tempSelected.selectedIndex].value;
+
+    // Celsius to Fahrenheit
+    const celToFah = (cel) => {
+        let fahrenheit = ((cel * 9 / 5) + 32).toFixed(1);
+        return fahrenheit;
+    }
+
+    // Fahrenheit to Celsius
+    const fahToCel = (fah) => {
+        let celsius = ((fah - 32) * 5 / 9).toFixed(1);
+        return celsius;
+    }
+
+    if (valueTemp == 'cel') {
+        document.getElementById("result").innerHTML = celToFah(inputTemp) + "&#176; Fahrenheit";
+    }
+    else {
+        document.getElementById("result").innerHTML = fahToCel(inputTemp) + "&#176; Celsius";
+    }
+}
+</script>
+
+</html>
